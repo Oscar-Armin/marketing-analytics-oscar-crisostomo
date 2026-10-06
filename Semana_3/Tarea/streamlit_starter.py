@@ -13,6 +13,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
+from pathlib import Path
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
@@ -26,7 +27,8 @@ FEATURES = ["recency_days", "frequency", "monetary", "email_open_rate", "tenure_
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("data/uplift_campaign.csv")
+    base_dir = Path(__file__).resolve().parent
+    return pd.read_csv(base_dir / "data" / "uplift_campaign.csv")
 
 
 @st.cache_data
